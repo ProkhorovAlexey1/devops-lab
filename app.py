@@ -5,7 +5,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Content-type", "text/plain; charset=utf-8")
         self.end_headers()
-        self.wfile.write(b"DA TI CHE ZA ZVER` YA TEBE GOVORU")
+        self.wfile.write(b"Hello from Backend")
 
 server = HTTPServer(("0.0.0.0", 8000), Handler)
 
