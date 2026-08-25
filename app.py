@@ -5,7 +5,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Content-type", "text/plain; charset=utf-8")
         self.end_headers()
-        self.wfile.write(b"IM WORK IN BACKEND AND READY TO IT ")
+        self.wfile.write(b"This is conflict test branch in merge ")
 
 server = HTTPServer(("0.0.0.0", 8000), Handler)
 
