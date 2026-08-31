@@ -12,3 +12,35 @@
         
         - name: Build Docker image
           run:  docker build -t devops-lab:test .
+
+        - name: Run container
+          run: |
+              docker run -d --name test-container -p 8080:80 devops-lab:test
+              sleep 5
+        - name: Check Container is running 
+          run: |
+              if ["$(docker inspect -f '{{.State.Running}}' test-container" != "true" ]; then
+                  echo " Контейнер упал"
+                  docker logs test-container
+                  exit 1 
+              fi
+              echo "Контейнер запущен все бомба"
+        - name: Health check (HTTP) 
+          run: | 
+                for i in {1..10}; do 
+                  if curl -sf http://localhost:8080/ > /dev/null; then 
+                    echo "✅ Приложение отвечает на запросы" 
+                    exit 0 
+                  fi 
+                  echo "Ждем приложение... попытка $i" 
+                  sleep 2 
+                  done 
+                  echo "❌ Приложение не ответило вовремя" 
+                  docker logs test-container 
+                  exit 1
+         - name: Show logs on failure 
+           if: failure() 
+           run: docker logs test-container
+         - name: Cleanup 
+           if: always() 
+           run: docker rm -f test-container || true
