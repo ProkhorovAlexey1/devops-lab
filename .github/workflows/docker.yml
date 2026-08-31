@@ -11,4 +11,4 @@
           uses: actions/checkout@v4
         
         - name: Build Docker image
-          run:  docker built -t devops-lab:test .
+          run:  docker build -t devops-lab:test .
