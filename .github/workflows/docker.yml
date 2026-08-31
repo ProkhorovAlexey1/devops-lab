@@ -15,7 +15,7 @@
 
         - name: Run container
           run: |
-            docker run -d --name test-container -p 8080:80 devops-lab:test
+            docker run -d --name test-container -p 8080:8000 devops-lab:test
             sleep 5
 
         - name: Check container is running
