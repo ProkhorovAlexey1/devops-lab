@@ -5,7 +5,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Content-type", "text/plain; charset=utf-8")
         self.end_headers()
-        self.wfile.write(b"This is conflict test branch in merge ")
+        self.wfile.write(b" TEXT CHANGER FROM GITHUB AND CI/CD USED ")
 
 server = HTTPServer(("0.0.0.0", 8000), Handler)
 
