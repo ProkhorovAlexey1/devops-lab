@@ -1,7 +1,7 @@
 services:
 
   backend:
-    build: .
+    image: ghcr.io/prokhorovalexey1/devops-lab:latest
     container_name: backend
     expose:
       - "8000"
@@ -10,6 +10,7 @@ services:
         interval: 10s
         timeout: 3s
         retries: 3
+    restart: unless-stopped
 
   nginx:
     image: nginx:latest
